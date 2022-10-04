@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block main %}
+    {% for card in cardids %}
+        <img src="https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ card }}&type=card" alt="{{ card }}">
+    {% endfor %}
+    <form action="/results" method="post">
+        <div class="form-group">
+            <select name=pick>
+                <option disabled selected value="">Card</option>
+                {% for i in range(0, length) %}
+                    <option value="{{ landids[i] }}">{{ landnames[i] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div hidden class="form-group">
+            <select name=deck>
+                <option selected value="{{ deckid }}"></option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Add a Land</button>
+    </form>
+{% endblock %}

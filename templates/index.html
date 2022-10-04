@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<h1>Previous Decks</h1>
+<table>
+    <thead>
+        <tr>
+            <th style="padding:0 15px 0 15px">ID</th>
+            <th style="padding:0 15px 0 15px">Set</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for deck in decks %}
+        <tr>
+            <td>{{ deck["id"] }}</td>
+            <td>{{ deck["cardset"] }}</td>
+        </tr>
+        {% endfor %}
+        {% if not show_hidden %}
+        <tr>
+            <td>None</td>
+            <td>None</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% if show_hidden %}
+    <form action="/results" method="post">
+        <div class="form-group">
+            <select name=deck>
+                <option disabled selected value="">Choose a Deck</option>
+                {% for deck in decks %}
+                    <option value="{{ deck["id"] }}">{{ deck["id"] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">View Deck</button>
+    </form>
+    <hr>
+    <form action="/" method="post">
+        <div class="form-group">
+            <select name=remove>
+                <option disabled selected value="">Choose a Deck</option>
+                {% for deck in decks %}
+                    <option value="{{ deck["id"] }}">{{ deck["id"] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Remove Deck</button>
+    </form>
+{% endif %}
+{% endblock %}
