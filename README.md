@@ -47,3 +47,7 @@ Upon adding lands, the page will be reloaded to reflect the changes made to the 
 ### Video:
 
 [https://www.youtube.com/watch?v=GP4voCJg6Bk](https://www.youtube.com/watch?v=GP4voCJg6Bk)
+
+### Note:
+
+Some portions based on Harvard CS50 starter code.
